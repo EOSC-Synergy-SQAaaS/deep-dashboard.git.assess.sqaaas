@@ -1,0 +1,66 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.8
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/indigo-dc/deep-dashboard:
+      branch: master
+      repo: https://github.com/indigo-dc/deep-dashboard.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/indigo-dc/deep-dashboard git:
+        commands:
+        - /usr/bin/env sh .sqa/script.scaly-magnolia-moorhen.sh
+        container: qc.acc_flabby-champagne-buffalo
+  QC.Doc:
+    repos:
+      github.com/indigo-dc/deep-dashboard find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.shaggy-jade-skunk.sh
+        container: qc.doc_randy-carmine-dingo
+      github.com/indigo-dc/deep-dashboard git:
+        commands:
+        - /usr/bin/env sh .sqa/script.scanty-orchid-clam.sh
+        container: qc.doc_bluesy-turquoise-dugong
+      github.com/indigo-dc/deep-dashboard markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.jumpy-apricot-havanese.sh
+        container: qc.doc_freaky-salmon-foxhound
+  QC.Lic:
+    repos:
+      github.com/indigo-dc/deep-dashboard licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.stinky-firebrick-donkey.sh
+        container: qc.lic_lumpy-ivory-shark
+  QC.Sec:
+    repos:
+      github.com/indigo-dc/deep-dashboard bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.crabby-magenta-gopher.sh
+        container: qc.sec_flimsy-coral-caiman
+  QC.Sty:
+    repos:
+      github.com/indigo-dc/deep-dashboard flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.crabby-zucchini-reindeer.sh
+        container: qc.sty_bluesy-wheat-antelope
+      github.com/indigo-dc/deep-dashboard hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.nippy-celadon-paradise.sh
+        container: qc.sty_homey-green-caterpillar
+      github.com/indigo-dc/deep-dashboard jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.sloppy-thistle-skunk.sh
+        container: qc.sty_slimy-puce-angora
+  QC.Ver:
+    repos:
+      github.com/indigo-dc/deep-dashboard get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.slimy-flax-toad.sh
+        container: qc.ver_lousy-green-blue
+timeout: 5400
